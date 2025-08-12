@@ -24,6 +24,9 @@ app.once('ready', () => {
     }
   })
 
+  // Set custom user agent
+  window.webContents.setUserAgent('sample_agent_ui_electron/1.0.0-master')
+
   // Load a URL in the window to the local index.html path
   window.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
