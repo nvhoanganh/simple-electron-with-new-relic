@@ -4,8 +4,22 @@ const url = require('url') // https://nodejs.org/api/url.html
 
 let window = null
 
+const fs = require('fs');
+
 // Wait until the app is ready
 app.once('ready', () => {
+  // Read config.json
+  let enabledNewRelic = true;
+  try {
+    const configPath = path.join(__dirname, 'config.json');
+    const configData = fs.readFileSync(configPath, 'utf8');
+    const config = JSON.parse(configData);
+    enabledNewRelic = config.enabledNewRelic;
+  } catch (err) {
+    // If config.json is missing or invalid, default to true
+    enabledNewRelic = true;
+  }
+
   // Create a new window
   window = new BrowserWindow({
     // Set the initial width to 400px
@@ -24,17 +38,16 @@ app.once('ready', () => {
     }
   })
 
-  // Set custom user agent
-  window.webContents.setUserAgent('sample_agent_ui_electron/1.0.0-master')
+  window.webContents.setUserAgent('sample_agent_ui_electron/1.0.0-master');
 
-  // Load a URL in the window to the local index.html path
+  // Decide which HTML to load
+  const htmlFile = enabledNewRelic ? 'index.html' : 'index-no-nr.html';
   window.loadURL(url.format({
-    pathname: path.join(__dirname, 'index.html'),
+    pathname: path.join(__dirname, htmlFile),
     protocol: 'file:',
     slashes: true
-  }))
+  }));
 
-  // Show window when page is ready
   window.once('ready-to-show', () => {
     window.show()
   })
