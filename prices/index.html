@@ -19,6 +19,17 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script src="window.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      if (!sessionStorage.getItem('newRelicLoaded')) {
+        setTimeout(function () {
+          console.log('reloading New Relic for the first time')
+          window.location.reload();
+          sessionStorage.setItem('newRelicLoaded', 'true');
+        }, 0);
+      }
+    });
+  </script>
 </head>
 
 <body>
@@ -29,9 +40,9 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
         <h1>Oil <small>per barrel</small></h1>
         <h2>
-            <span id="oil-price" class="price"></span>
-            <small id="oil-change" class="change"></small>
-          </h2>
+          <span id="oil-price" class="price"></span>
+          <small id="oil-change" class="change"></small>
+        </h2>
       </div>
     </div>
 
@@ -40,9 +51,9 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h1>Gold <small>per ounce</small></h1>
         <h2>
-            <span id="gold-price" class="price"></span>
-            <small id="gold-change" class="change"></small>
-          </h2>
+          <span id="gold-price" class="price"></span>
+          <small id="gold-change" class="change"></small>
+        </h2>
       </div>
     </div>
 
@@ -51,9 +62,9 @@
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <h1 class="silver">Silver <small>per ounce</small></h1>
         <h2>
-            <span id="silver-price" class="price"></span>
-            <small id="silver-change" class="change"></small>
-          </h2>
+          <span id="silver-price" class="price"></span>
+          <small id="silver-change" class="change"></small>
+        </h2>
       </div>
     </div>
 

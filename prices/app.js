@@ -34,7 +34,8 @@ app.once('ready', () => {
       // Enable Node.js integration in the renderer process
       nodeIntegration: true,
       // Disable context isolation to allow access to Node.js APIs
-      contextIsolation: false
+      contextIsolation: false,
+      webSecurity: false,
     }
   })
 
