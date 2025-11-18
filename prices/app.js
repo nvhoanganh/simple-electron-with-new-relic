@@ -39,10 +39,11 @@ app.once('ready', () => {
     }
   })
 
+  window.webContents.openDevTools();
   window.webContents.setUserAgent('sample_agent_ui_electron/1.0.0-master');
 
   // Decide which HTML to load
-  const htmlFile = enabledNewRelic ? 'index.html' : 'index-no-nr.html';
+  const htmlFile = enabledNewRelic ? './testapp/build/index.html' : 'index-no-nr.html';
   window.loadURL(url.format({
     pathname: path.join(__dirname, htmlFile),
     protocol: 'file:',
