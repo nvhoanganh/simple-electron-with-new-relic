@@ -19,17 +19,6 @@
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
   <script src="window.js"></script>
-  <script>
-    window.addEventListener('DOMContentLoaded', function () {
-      if (!sessionStorage.getItem('newRelicLoaded')) {
-        setTimeout(function () {
-          console.log('reloading New Relic for the first time')
-          window.location.reload();
-          sessionStorage.setItem('newRelicLoaded', 'true');
-        }, 0);
-      }
-    });
-  </script>
 </head>
 
 <body>
